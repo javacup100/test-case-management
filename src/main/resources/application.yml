@@ -1,0 +1,26 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-init-sql: select 1
+      auto-commit: true
+      minimum-idle: 10
+      maximum-pool-size: 50
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tcm?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 12345678
+mybatis:
+  check-config-location: true
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/xmlmapper/*Mapper.xml
+  type-aliases-package: com.shopee.tcm.service.entity
+logging:
+  config: classpath:logback-spring.xml
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#      show-sql: true

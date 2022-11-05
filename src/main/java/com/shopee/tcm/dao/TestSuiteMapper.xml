@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopee.tcm.dao.TestSuiteMapper">
+  <resultMap id="BaseResultMap" type="com.shopee.tcm.service.entity.TestSuite">
+    <id column="suite_id" jdbcType="BIGINT" property="suiteId" />
+    <result column="case_id_list" jdbcType="VARCHAR" property="caseIdList" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="jira_links" jdbcType="VARCHAR" property="jiraLinks" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="prd_links" jdbcType="VARCHAR" property="prdLinks" />
+    <result column="qa_list" jdbcType="VARCHAR" property="qaList" />
+    <result column="suite_name" jdbcType="VARCHAR" property="suiteName" />
+    <result column="td_links" jdbcType="VARCHAR" property="tdLinks" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_time" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    suite_id, case_id_list, created_by, created_time, jira_links, parent_id, prd_links, 
+    qa_list, suite_name, td_links, updated_by, updated_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_suite
+    where suite_id = #{suiteId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from test_suite
+    where suite_id = #{suiteId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.shopee.tcm.service.entity.TestSuite">
+    insert into test_suite (suite_id, case_id_list, created_by, 
+      created_time, jira_links, parent_id, 
+      prd_links, qa_list, suite_name, 
+      td_links, updated_by, updated_time
+      )
+    values (#{suiteId,jdbcType=BIGINT}, #{caseIdList,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{jiraLinks,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{prdLinks,jdbcType=VARCHAR}, #{qaList,jdbcType=VARCHAR}, #{suiteName,jdbcType=VARCHAR}, 
+      #{tdLinks,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopee.tcm.service.entity.TestSuite">
+    insert into test_suite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suiteId != null">
+        suite_id,
+      </if>
+      <if test="caseIdList != null">
+        case_id_list,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="jiraLinks != null">
+        jira_links,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="prdLinks != null">
+        prd_links,
+      </if>
+      <if test="qaList != null">
+        qa_list,
+      </if>
+      <if test="suiteName != null">
+        suite_name,
+      </if>
+      <if test="tdLinks != null">
+        td_links,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suiteId != null">
+        #{suiteId,jdbcType=BIGINT},
+      </if>
+      <if test="caseIdList != null">
+        #{caseIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jiraLinks != null">
+        #{jiraLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="prdLinks != null">
+        #{prdLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="qaList != null">
+        #{qaList,jdbcType=VARCHAR},
+      </if>
+      <if test="suiteName != null">
+        #{suiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="tdLinks != null">
+        #{tdLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopee.tcm.service.entity.TestSuite">
+    update test_suite
+    <set>
+      <if test="caseIdList != null">
+        case_id_list = #{caseIdList,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jiraLinks != null">
+        jira_links = #{jiraLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="prdLinks != null">
+        prd_links = #{prdLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="qaList != null">
+        qa_list = #{qaList,jdbcType=VARCHAR},
+      </if>
+      <if test="suiteName != null">
+        suite_name = #{suiteName,jdbcType=VARCHAR},
+      </if>
+      <if test="tdLinks != null">
+        td_links = #{tdLinks,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where suite_id = #{suiteId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopee.tcm.service.entity.TestSuite">
+    update test_suite
+    set case_id_list = #{caseIdList,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      jira_links = #{jiraLinks,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      prd_links = #{prdLinks,jdbcType=VARCHAR},
+      qa_list = #{qaList,jdbcType=VARCHAR},
+      suite_name = #{suiteName,jdbcType=VARCHAR},
+      td_links = #{tdLinks,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP}
+    where suite_id = #{suiteId,jdbcType=BIGINT}
+  </update>
+</mapper>

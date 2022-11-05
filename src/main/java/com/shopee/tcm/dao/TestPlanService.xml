@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopee.tcm.dao.TestPlanItemMapper">
+  <resultMap id="BaseResultMap" type="com.shopee.tcm.service.entity.TestPlanItem">
+    <id column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="execution_staus" jdbcType="INTEGER" property="executionStaus" />
+    <result column="test_case_id" jdbcType="BIGINT" property="testCaseId" />
+    <result column="test_plan_id" jdbcType="BIGINT" property="testPlanId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, execution_staus, test_case_id, test_plan_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_plan_item
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from test_plan_item
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.shopee.tcm.service.entity.TestPlanItem">
+    insert into test_plan_item (item_id, execution_staus, test_case_id, 
+      test_plan_id)
+    values (#{itemId,jdbcType=BIGINT}, #{executionStaus,jdbcType=INTEGER}, #{testCaseId,jdbcType=BIGINT}, 
+      #{testPlanId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shopee.tcm.service.entity.TestPlanItem">
+    insert into test_plan_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="executionStaus != null">
+        execution_staus,
+      </if>
+      <if test="testCaseId != null">
+        test_case_id,
+      </if>
+      <if test="testPlanId != null">
+        test_plan_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="executionStaus != null">
+        #{executionStaus,jdbcType=INTEGER},
+      </if>
+      <if test="testCaseId != null">
+        #{testCaseId,jdbcType=BIGINT},
+      </if>
+      <if test="testPlanId != null">
+        #{testPlanId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shopee.tcm.service.entity.TestPlanItem">
+    update test_plan_item
+    <set>
+      <if test="executionStaus != null">
+        execution_staus = #{executionStaus,jdbcType=INTEGER},
+      </if>
+      <if test="testCaseId != null">
+        test_case_id = #{testCaseId,jdbcType=BIGINT},
+      </if>
+      <if test="testPlanId != null">
+        test_plan_id = #{testPlanId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shopee.tcm.service.entity.TestPlanItem">
+    update test_plan_item
+    set execution_staus = #{executionStaus,jdbcType=INTEGER},
+      test_case_id = #{testCaseId,jdbcType=BIGINT},
+      test_plan_id = #{testPlanId,jdbcType=BIGINT}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+</mapper>
